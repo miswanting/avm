@@ -3,24 +3,32 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const mainConfig = {
-  entry: './src/main.ts',
   mode: 'development',
+  entry: './src/main.ts',
   target: 'electron-main',
   output: {
+    path: resolve(__dirname, 'dist'),
     filename: 'main.js',
-    path: resolve(__dirname, 'dist')
   },
   resolve: {
     extensions: ['.ts', '.js']
   },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+      }
+    ]
+  }
 }
 const rendererConfig = {
-  entry: './src/renderer.ts',
   mode: 'development',
+  entry: './src/renderer.ts',
   target: 'electron-renderer',
   output: {
+    path: resolve(__dirname, 'dist'),
     filename: 'renderer.js',
-    path: resolve(__dirname, 'dist')
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -61,6 +69,11 @@ const rendererConfig = {
           'css-loader'
         ]
       },
+      {
+        test: /\.ya?ml$/,
+        type: 'json',
+        use: 'yaml-loader'
+      }
     ]
   }
 }
