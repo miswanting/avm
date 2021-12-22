@@ -81,10 +81,7 @@ const code = ref(video.fileCode)
 function refresh() {
   store.state.video.list[props.vid].isCoverLoaded = false
   store.state.video.list[props.vid].fileCode = code.value
-  store.dispatch('task/search', {
-    vid: props.vid,
-    code: code.value
-  })
+  store.dispatch('task/add', props.vid)
 }
 // function submit() {
 //   store.dispatch('database/addVideo', {

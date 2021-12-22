@@ -28,16 +28,6 @@ export default {
       state.info.todo.push(vid)
       dispatch('update')
     },
-    search({ dispatch }, options) {
-      dispatch('net/send', {
-        cmd: 'GetVideoInfo',
-        scope: 'spider',
-        data: {
-          vid: options.vid,
-          code: options.code
-        },
-      }, { root: true })
-    },
     checkVideoToFolder({ dispatch, rootState }, options) {
       const vid = options.vid
       const video = rootState.video.list[vid]
@@ -149,22 +139,11 @@ export default {
           let vid = state.convert.doing.shift()
           state.convert.done.push(vid)
           dispatch('update')
-          console.log(rootState.video.list[pkg.data.vid]);
-          
           if (rootState.video.list[pkg.data.vid].isFolderCreated) {
             dispatch('checkVideoToFolder', {
               vid: pkg.data.vid,
             })
           }
-          // if (rootState.video.list[pkg.data.vid].isInfoLoaded) {
-          //   dispatch('net/send', {
-          //     cmd: 'MoveVideoToDest',
-          //     scope: 'database',
-          //     data: {
-          //       vid: pkg.data.vid,
-          //     }
-          //   }, { root: true })
-          // }
           break;
         case 'SetVideoInfo':
           rootState.video.list[pkg.data.vid].isLoadingInfo = false
