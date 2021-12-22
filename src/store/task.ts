@@ -28,6 +28,10 @@ export default {
       state.info.todo.push(vid)
       dispatch('update')
     },
+    search({ state, rootState, dispatch }, vid) {
+      state.info.todo.push(vid)
+      dispatch('update')
+    },
     checkVideoToFolder({ dispatch, rootState }, options) {
       const vid = options.vid
       const video = rootState.video.list[vid]
@@ -88,7 +92,7 @@ export default {
             scope: 'spider',
             data: {
               vid,
-              code: video.code
+              code: video.fileCode
             },
           }, { root: true })
         }

@@ -1,49 +1,57 @@
 <style scoped lang="stylus">
-main
-  font-family monospace
-  .video-item
-    margin 1rem
-    border-radius .5rem
-    border 1px solid #0003
-    display flex
-    .video-info
-      flex-grow 1
-      padding .5rem
-      div
-        display flex
+.video-item
+  margin 1rem
+  border-radius .5rem
+  border 1px solid #0003
+  display flex
+  height 6rem
+  .video-info
+    flex-grow 1
+    div
+      display flex
+    .video-local-bar
+      height 2rem
+      align-items center
+      .code-input
+        font-weight bold
+        padding 0 .5rem
+    .video-remote-bar
+      height 2rem
+      align-items center
+      padding 0 .5rem
       .video-code
         background #0003
         padding 0 .5rem
       .video-title
         font-weight bold
-        margin-left .25rem
-    .video-cover
-      border-left 1px solid #0003
-      min-width 143px
-      position relative
-      img
-        max-height 96px
-        width auto
-      .video-cover-mask
-        position absolute
-        top 0
-        bottom 0
-        left 0
-        right 0
-        display grid
-        place-items center
-        backdrop-filter blur(1px)brightness(.5)
-    .video-actions
-      border-left 1px solid #0003
-      div
-        padding .5rem
-        text-align-last center
-        display grid
-        cursor pointer
-        &:hover
-          background #0003
-        i
-          display contents
+        padding 0 .5rem
+  .video-cover
+    border-left 1px solid #0003
+    min-width 143px
+    position relative
+    img
+      max-height 6rem
+      width auto
+    .video-cover-mask
+      position absolute
+      top 0
+      bottom 0
+      left 0
+      right 0
+      display grid
+      place-items center
+      backdrop-filter blur(1px)brightness(.5)
+  .video-actions
+    border-left 1px solid #0003
+    div
+      padding .5rem
+      text-align-last center
+      display grid
+      cursor pointer
+      &:hover
+        background #0003
+      i
+        display contents
 </style>
 <template lang="pug">
 .video-item
@@ -72,7 +80,7 @@ main
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-import CodeInput from '../components/CodeInput.vue'
+import CodeInput from './CodeInput.vue'
 import CircleProgress from './CircleProgress.vue'
 const store = useStore()
 const props = defineProps(['vid'])
@@ -81,7 +89,7 @@ const code = ref(video.fileCode)
 function refresh() {
   store.state.video.list[props.vid].isCoverLoaded = false
   store.state.video.list[props.vid].fileCode = code.value
-  store.dispatch('task/add', props.vid)
+  store.dispatch('task/search', props.vid)
 }
 // function submit() {
 //   store.dispatch('database/addVideo', {
