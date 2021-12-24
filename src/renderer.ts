@@ -1,6 +1,8 @@
 import 'sanitize.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import './themes/index.styl'
+import './themes/color.styl'
+import './themes/theme.styl'
 
 import { createApp } from 'vue'
 

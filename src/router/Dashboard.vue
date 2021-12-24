@@ -30,7 +30,6 @@ main
         display grid
         i
           display contents
-
 </style>
 
 <template lang="pug">
@@ -54,6 +53,7 @@ import Header from '../components/Header.vue'
 import VideoItem from '../components/VideoItem.vue'
 import CodeInput from '../components/CodeInput.vue'
 import CircleProgress from '../components/CircleProgress.vue'
+import Loading from '../components/Loading.vue'
 
 const store = useStore()
 

@@ -1,10 +1,12 @@
 <style scoped lang="stylus">
 .menu-item
-  display flex
+  height 100%
   .menu-button
     padding 0 .25rem
     cursor pointer
     height 100%
+    display flex
+    align-items center
     &:hover
       background #0003
   .menu-anchor
